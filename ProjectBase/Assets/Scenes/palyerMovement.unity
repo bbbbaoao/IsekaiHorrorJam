@@ -470,6 +470,7 @@ GameObject:
   - component: {fileID: 1832719583}
   - component: {fileID: 1832719582}
   - component: {fileID: 1832719586}
+  - component: {fileID: 1832719587}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -616,6 +617,19 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!114 &1832719587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832719581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb4395df14942f49a30fd8146895edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemObject: {fileID: 11400000, guid: e5f25b998411c2b4690d2c03f7a200a8, type: 2}
 --- !u!1 &2100650369 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2596565124615488942, guid: e939cc58a3946694e8819feeb35de27e,
@@ -741,6 +755,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309289963743666166, guid: e939cc58a3946694e8819feeb35de27e,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604952837766331340, guid: e939cc58a3946694e8819feeb35de27e,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604952837766331340, guid: e939cc58a3946694e8819feeb35de27e,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604952837766331340, guid: e939cc58a3946694e8819feeb35de27e,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7993351907608440690, guid: e939cc58a3946694e8819feeb35de27e,
         type: 3}
