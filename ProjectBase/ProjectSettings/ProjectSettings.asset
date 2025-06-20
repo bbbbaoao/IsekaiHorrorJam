@@ -807,7 +807,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: MAGICACLOTH2
+    Standalone: MAGICACLOTH2;NODECANVAS
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
