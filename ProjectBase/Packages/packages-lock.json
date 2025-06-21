@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.occasoftware.super-simple-skybox": {
+      "version": "file:com.occasoftware.super-simple-skybox",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.shadergraph": "14.0.7"
+      }
+    },
     "com.unity.burst": {
       "version": "1.8.23",
       "depth": 0,
@@ -176,8 +184,15 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {
+
+        "com.unity.modules.audio": "1.0.0",
+        "com.unity.modules.director": "1.0.0",
+        "com.unity.modules.animation": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0"
+
         "com.unity.test-framework": "1.1.31",
         "com.unity.modules.jsonserialize": "1.0.0"
+
       },
       "url": "https://packages.unity.com"
     },
