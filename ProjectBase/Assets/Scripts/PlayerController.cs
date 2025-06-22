@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 aimDirection;
     public bool Reversed;
     private Vector2 _lookInput;
-    private PlayerInput _input;
+    public PlayerInput _input;
 
     private void Awake()
     {

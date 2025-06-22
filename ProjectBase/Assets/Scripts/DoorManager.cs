@@ -1,26 +1,35 @@
 using UnityEngine;
+using UnityEngine.Windows;
+using UnityEngine.InputSystem;
 public class DoorManager : MonoBehaviour
 {
     [Header("Settings")]
-    public KeyCode interactionKey = KeyCode.E;
+   // public KeyCode interactionKey = KeyCode.E;
     public float interactionRange = 2f;
 
     private bool _isNearDoor= false;
     public float forwardOffset = 0.5f;
 
-
+  //  private PlayerInput _input;
+    [SerializeField]  private PlayerController _controller;
     //private DoorController _doorController;
 
     private void Update()
     {
-        if (Input.GetKeyUp(interactionKey))
-        {
-            //ToggleDoor();
-            TryInteractWithDoor();
-        }
+        //    if (Input.GetKeyUp(interactionKey))
+        //    {
+        //        //ToggleDoor();
+        //        TryInteractWithDoor();
+        //    }
     }
 
-    private void TryInteractWithDoor()
+    private void Start()
+    {
+        _controller._input.currentActionMap.door.performed += ctx => TryInteractWithDoor(ctx);
+    }
+
+
+    private void TryInteractWithDoor(InputAction.CallbackContext context)
     {
         // Position the sphere slightly in front of the player
         Vector3 sphereCenter = transform.position + transform.forward * forwardOffset;
