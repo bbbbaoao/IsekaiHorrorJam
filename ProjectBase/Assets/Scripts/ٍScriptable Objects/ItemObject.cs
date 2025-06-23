@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-[CreateAssetMenu(fileName = "New Mask Item", menuName = "Inventory system /Scriptable Objects/Item Object", order = 0)]
+[CreateAssetMenu(fileName = "New Mask Item", menuName = "Inventory system /Scriptable Objects/Mask", order = 0)]
 public class ItemObject : ScriptableObject
 {
     [SerializeField] private string MaskName;
