@@ -18,6 +18,11 @@ public class Inventory : ScriptableObject
         }
         items.Add(new inventoryItem(itemObject, amount));
     }
+
+    public void EmptyInventory()
+    {
+        items.Clear();
+    }
 }
 [System.Serializable]
 public class inventoryItem
