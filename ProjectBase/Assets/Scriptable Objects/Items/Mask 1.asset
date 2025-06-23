@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Mask 1
   m_EditorClassIdentifier: 
   MaskName: heal
-  MaskLayerName: 12
-  MaskDescription: dfs
+  MaskSet: 0
+  evil: 1
+  MaskImage: {fileID: 0}

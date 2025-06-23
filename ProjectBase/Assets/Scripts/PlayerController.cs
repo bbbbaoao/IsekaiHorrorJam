@@ -131,8 +131,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        //if (_characterMovement.Stamina > 30f)
-        //    _characterAnimations.Dash();
+        if (_characterMovement.Stamina > 30f)
+            _characterMovement.Dash();
     }
 
     public void OnLook(InputAction.CallbackContext context)

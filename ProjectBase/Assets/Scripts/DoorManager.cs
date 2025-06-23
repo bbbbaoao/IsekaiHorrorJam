@@ -49,18 +49,25 @@ public class DoorManager : MonoBehaviour
             }
         }
     }
-    public bool SpiderActive(int isNearDoor)
+    public void SpiderActive(int isNearDoor)
     {
        if(isNearDoor == 1)
         {
             _isNearDoor = true;
             Debug.Log("Spider is active near the door.");
+
         }
-        //else
-        //{
-        //    _isNearDoor = false;
-        //    Debug.Log("Spider is not active near the door.");
-        //}
+        else
+        {
+            _isNearDoor = false;
+            Debug.Log("Spider is not active near the door.");
+
+        }
+
+    }
+
+    public bool GetIsNear()
+    {
         return _isNearDoor;
     }
 
