@@ -8669,7 +8669,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
@@ -37652,15 +37652,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76fefa7bc6f14c4d9abff6543206482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClips:
-  - {fileID: 8300000, guid: 42a8e4fe93660304287dd3275d5ed6e3, type: 3}
-  - {fileID: 8300000, guid: 4a8c0b396bd3b1f468eb1d87d5eea7e1, type: 3}
-  - {fileID: 8300000, guid: 6c86caf1a563ed945aa0a29de3c0cbbb, type: 3}
-  - {fileID: 8300000, guid: 33ed2cfe278bd414abd5514a7d8b00b4, type: 3}
-  - {fileID: 8300000, guid: 7bfa533810a362f48b3e79a67ccbb75e, type: 3}
-  - {fileID: 8300000, guid: d62925af62b6fb24b844774e04c495f7, type: 3}
-  - {fileID: 8300000, guid: 111ab8af647e0cd41b3f59bb8a6beac6, type: 3}
-  - {fileID: 8300000, guid: 74935353a6ed5ac44bd82d3a49cac5d0, type: 3}
+  musicClips: []
+  transitionClips: []
   fadeDuration: 1.5
 --- !u!4 &1626534798 stripped
 Transform:
@@ -38490,7 +38483,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
@@ -50181,7 +50174,7 @@ PrefabInstance:
     - target: {fileID: 6402968311768467606, guid: f02aac36daaaaed4385681c801c67cd5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.9143
+      value: 13.929
       objectReference: {fileID: 0}
     - target: {fileID: 6402968311768467606, guid: f02aac36daaaaed4385681c801c67cd5,
         type: 3}
