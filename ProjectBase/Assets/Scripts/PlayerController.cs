@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private Camera _camera;
     Vector2 _mousePos;
     Transform _projectileSpawn;
-
+    Vector3 moveInput;
     private CharacterMovement _characterMovement;
     private Vector2 _moveInput;
     private Vector2 _rangeInput;
@@ -66,6 +66,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // Find correct right/forward directions based on main camera rotation
+        
+        Vector3 up =  Vector3.up;
+        Vector3 right = _camera.transform.right;
+        Vector3 forward = Vector3.Cross(right, up);
+        moveInput =  forward *Mathf.Clamp ( _moveInput.y,-45,45) + right *-Mathf.Clamp( _moveInput.x,-45,45);
+        // Send player input to character movement
+        _characterMovement.SetMoveInput(moveInput);
+    
         _input.currentActionMap.Sprint.performed += ctx => _characterMovement.IsRunning = true;
         _input.currentActionMap.Sprint.canceled += ctx => _characterMovement.IsRunning = false;
         // No, you do not spawn projectiles here.
@@ -84,19 +93,14 @@ public class PlayerController : MonoBehaviour
         _targetYaw += _lookInput.x * _mouseSensitivity;
         _targetPitch -= _lookInput.y * _mouseSensitivity;
         _targetPitch = Mathf.Clamp(_targetPitch, -90f, 90f);
-     
-        _currentYaw = Mathf.SmoothDampAngle(_currentYaw, _targetYaw, ref _yawVelocity, _rotationSmoothTime);
-        _currentPitch = Mathf.SmoothDamp(_currentPitch, _targetPitch, ref _pitchVelocity, _rotationSmoothTime);
 
+
+        float lerpSpeed = 1f / _rotationSmoothTime * Time.deltaTime; // Higher _rotationSmoothTime = slower smoothing
+        _currentYaw = Mathf.LerpAngle(_currentYaw, _targetYaw, lerpSpeed);
+        _currentPitch = Mathf.Lerp(_currentPitch, _targetPitch, lerpSpeed);
         // Apply rotation
         transform.rotation = Quaternion.Euler(0f, _currentYaw, 0f);
         _camera.transform.localRotation = Quaternion.Euler(_currentPitch, 0f, 0f);
-
-        // Find correct right/forward directions based on main camera rotation
-        Vector3 up = Vector3.up;
-        Vector3 right = _camera.transform.right;
-        Vector3 forward = Vector3.Cross(right, up);
-        Vector3 moveInput = forward * _moveInput.y + right * _moveInput.x;
 
         // Choose a distance in front of the camera, e.g., 10 units
         float distance = 10f;
@@ -104,10 +108,8 @@ public class PlayerController : MonoBehaviour
         _mousePos = new Vector2(worldPoint.x, worldPoint.y); // or use worldPoint directly if needed
 
         //Debug.DrawLine(transform.position, _mousePos, Color.blue);
-
-        // Send player input to character movement
-        _characterMovement.SetMoveInput(moveInput);
         _characterMovement.SetBodyDirection(moveInput);
+
         //_characterMovement.SetLookDirectionToCursor(); // TODO: May no longer be needed if we are using WASD.
 
         if (_lookInCameraDirection)
