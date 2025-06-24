@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 aimDirection;
     public bool Reversed;
     private Vector2 _lookInput;
-    private PlayerInput _input;
+    public PlayerInput _input;
 
     private void Awake()
     {
@@ -131,8 +131,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        //if (_characterMovement.Stamina > 30f)
-        //    _characterAnimations.Dash();
+        if (_characterMovement.Stamina > 30f)
+            _characterMovement.Dash();
     }
 
     public void OnLook(InputAction.CallbackContext context)

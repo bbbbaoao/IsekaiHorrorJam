@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""door"",
+                    ""type"": ""Button"",
+                    ""id"": ""f8b4e471-6907-4903-a1dc-e5eb8925e150"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0d15f8a-7eae-4747-8e23-7728af817e6f"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""door"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_currentActionMap_OnDash = m_currentActionMap.FindAction("OnDash", throwIfNotFound: true);
         m_currentActionMap_Sprint = m_currentActionMap.FindAction("Sprint", throwIfNotFound: true);
         m_currentActionMap_Look = m_currentActionMap.FindAction("Look", throwIfNotFound: true);
+        m_currentActionMap_door = m_currentActionMap.FindAction("door", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -256,6 +277,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_currentActionMap_OnDash;
     private readonly InputAction m_currentActionMap_Sprint;
     private readonly InputAction m_currentActionMap_Look;
+    private readonly InputAction m_currentActionMap_door;
     public struct CurrentActionMapActions
     {
         private @PlayerInput m_Wrapper;
@@ -265,6 +287,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @OnDash => m_Wrapper.m_currentActionMap_OnDash;
         public InputAction @Sprint => m_Wrapper.m_currentActionMap_Sprint;
         public InputAction @Look => m_Wrapper.m_currentActionMap_Look;
+        public InputAction @door => m_Wrapper.m_currentActionMap_door;
         public InputActionMap Get() { return m_Wrapper.m_currentActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -289,6 +312,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @door.started += instance.OnDoor;
+            @door.performed += instance.OnDoor;
+            @door.canceled += instance.OnDoor;
         }
 
         private void UnregisterCallbacks(ICurrentActionMapActions instance)
@@ -308,6 +334,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @door.started -= instance.OnDoor;
+            @door.performed -= instance.OnDoor;
+            @door.canceled -= instance.OnDoor;
         }
 
         public void RemoveCallbacks(ICurrentActionMapActions instance)
@@ -332,5 +361,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnOnDash(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnDoor(InputAction.CallbackContext context);
     }
 }
