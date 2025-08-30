@@ -6,6 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: ae1bc19e72f004246ab464b51720f2cd
+  - enabled: 1
+    path: Assets/Scenes/PrologueScene.unity
+    guid: cc4ba7bc0008ce9429684bfc004d2e78
+  - enabled: 1
     path: Assets/Scenes/Daemon/Temple_1st_Floor.unity
     guid: 2ab57321a30f9ad40898559adc52d8e8
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c5369af15eb1ed648b28a09619221d85,
+      type: 3}

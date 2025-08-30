@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d94863a4ee3e740498833f42bc4d70e0, type: 3}
+  m_Name: YokaiIntro
+  m_EditorClassIdentifier: 
+  speakerName: Yokai
+  lines:
+  - text: Blood of my blood....come forth, across time
+    voiceLine: {fileID: 0}
+  - text: The balance is breaking
+    voiceLine: {fileID: 0}
+  - text: "The pact was never broken, only forgotten\u2026 now, rise, descendant,
+      and walk the path fate buried in shadow"
+    voiceLine: {fileID: 0}
+  - text: You are here because you must be. Blood of my blood... the last of our
+      line
+    voiceLine: {fileID: 0}
+  - text: "This temple was once a place of balance, a sacred ground watched over
+      by our clan. But that balance has shattered. A false god, an evil spirit that
+      feeds on delusion and power now festers in the heart of this place. It has
+      stolen my strength\u2026 twisted my home into a lair of corruption."
+    voiceLine: {fileID: 0}
+  - text: "These masks\u2026 they hold what remains of my strength. The spirit tore
+      them from me, scattering them across the temple\u2019s domains to weaken me.
+      Return them, and I will rise once more whole, and ready to drive the blight
+      from these sacred walls."
+    voiceLine: {fileID: 0}
+  - text: I would not have summoned you if there were another way. You are the last
+      living heir of our bloodline the final ember of a flame nearly lost to time.
+      Only one of our blood can restore the balance, or all will fall into shadow
+    voiceLine: {fileID: 0}
+  - text: "Fail\u2026 and the spirit will curse your path. It will unravel your luck,
+      poison your days, and twist your fate beyond repair. This is more than duty
+      it is surviva"
+    voiceLine: {fileID: 0}
+  - text: As your generation would say 'I'm fr deadass about this' , now go!
+    voiceLine: {fileID: 0}
