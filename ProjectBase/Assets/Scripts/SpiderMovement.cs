@@ -57,10 +57,12 @@ public class SpiderMovement : MonoBehaviour
         Debug.Log(acceleration);
         _rigidbody.AddForce(acceleration);
 
-        if (IsGrounded)
+        //if (IsGrounded)
         {
             Quaternion targetRotation = Quaternion.LookRotation(BodyForward, Vector3.Cross(BodyForward, BodyRight));
             Quaternion delta = targetRotation * Quaternion.Inverse(_rigidbody.rotation);
+            Quaternion newRotation = Quaternion.Slerp(_rigidbody.rotation, targetRotation, _turnSpeed * Time.fixedDeltaTime);
+            _rigidbody.MoveRotation(newRotation);
             delta.ToAngleAxis(out float angle, out Vector3 axis);
             if (angle > 180f) angle -= 360f;
             if (Mathf.Abs(angle) > 0.01f)
@@ -78,6 +80,7 @@ public class SpiderMovement : MonoBehaviour
             float turnMagnitude = 1f - Mathf.Clamp01(Vector3.Dot(forwardLocal, LookDirection));
             float angularVelocity = turnMagnitude * _turnSpeed * turnDirection;
             _rigidbody.angularVelocity += new Vector3(0f, angularVelocity, 0f);
+            //newRotation *= Quaternion.LookRotation(new Vector3(0f, angularVelocity, 0f));
         }
 
     }
@@ -123,7 +126,8 @@ public class SpiderMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1f, 0f, 0f, 1f);
-        Gizmos.DrawLine(_rayObjfl.position, _rayObjfl.position - transform.up * _groundCheckDistance);
+        Gizmos.DrawLine(transform.position, transform.position + BodyForward * 0.5f);
+        Gizmos.DrawLine(transform.position, transform.position + BodyRight * 0.5f);
     }
 
 }

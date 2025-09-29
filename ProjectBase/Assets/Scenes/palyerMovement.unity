@@ -915,22 +915,22 @@ PrefabInstance:
     - target: {fileID: 137883647318087205, guid: d405267f479a8e448ab30ad8885f0f1b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9956401
       objectReference: {fileID: 0}
     - target: {fileID: 137883647318087205, guid: d405267f479a8e448ab30ad8885f0f1b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 137883647318087205, guid: d405267f479a8e448ab30ad8885f0f1b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 137883647318087205, guid: d405267f479a8e448ab30ad8885f0f1b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.09327836
       objectReference: {fileID: 0}
     - target: {fileID: 137883647318087205, guid: d405267f479a8e448ab30ad8885f0f1b,
         type: 3}
@@ -945,7 +945,7 @@ PrefabInstance:
     - target: {fileID: 137883647318087205, guid: d405267f479a8e448ab30ad8885f0f1b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 10.704
       objectReference: {fileID: 0}
     - target: {fileID: 766189037450595487, guid: d405267f479a8e448ab30ad8885f0f1b,
         type: 3}
@@ -1071,7 +1071,7 @@ MonoBehaviour:
   _speed: 5
   _acceleration: 5
   _gravity: 20
-  _turnSpeed: 200
+  _turnSpeed: 40
   _rayObjfl: {fileID: 842386433}
   _rayObjfr: {fileID: 1378608528}
   _rayObjbl: {fileID: 1860730151}
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  _groundCheckDistance: 0.2
+  _groundCheckDistance: 1
   _chaseDistance: 10
   _player: {fileID: 2033329458}
   HasMoveInput: 0
