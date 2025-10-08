@@ -15,7 +15,9 @@ public class SpiderMovement : MonoBehaviour
     [SerializeField] private Transform _rayObjfr;
     [SerializeField] private Transform _rayObjbl;
     [SerializeField] private Transform _rayObjbr;
+    [SerializeField] private Transform _rayFwd;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private LayerMask _groundAndObstacleLayer;
     [SerializeField] private float _groundCheckDistance = 0.1f;
     [SerializeField] private float _chaseDistance = 10f;
     [SerializeField] private Transform _player;
@@ -24,6 +26,7 @@ public class SpiderMovement : MonoBehaviour
     private RaycastHit[] hitResultfr = new RaycastHit[3];
     private RaycastHit[] hitResultbl = new RaycastHit[3];
     private RaycastHit[] hitResultbr = new RaycastHit[3];
+    private RaycastHit[] hitResultfwd = new RaycastHit[3];
     private Rigidbody _rigidbody;
     public bool HasMoveInput;
     private Vector3 BodyForward;
@@ -55,7 +58,6 @@ public class SpiderMovement : MonoBehaviour
         Vector3 acceleration = (targetVelocity - Velocity) * (_acceleration * (IsGrounded? 1f: 0.15f));
         if (!IsGrounded && !HasMoveInput) acceleration = Vector3.zero;
         acceleration += Vector3.Cross(BodyRight, BodyForward) * _gravity;
-        Debug.Log(acceleration);
         _rigidbody.AddForce(acceleration);
 
         //if (IsGrounded)
@@ -90,16 +92,31 @@ public class SpiderMovement : MonoBehaviour
 
     private void Navigating()
     {
-        Debug.Log(Vector3.Distance(_player.position, transform.position));
+
         if (Vector3.Distance(_player.position, transform.position) < _chaseDistance)
         {
             //MoveInput = (_player.position - transform.position).normalized;
             Vector3 direction = _player.position - transform.position;
             //subtraction non-horizontal component from the movement
             Vector3 updir = Vector3.Dot(direction, transform.up) * transform.up;
+            //problem: now this detects a collider but once on collider the spider once again wants to face the player
+            //also not able to detect obstacles to the right or left
+            //For obstacles must be able to store the value and fully overcome it
             direction -= updir;
-            MoveInput = (direction + updir * _mixUpwardMovement).normalized;
-            LookDirection = new Vector3(direction.x, 0f, direction.z).normalized;
+            int hitsfwd = Physics.RaycastNonAlloc(_rayFwd.position, transform.forward, hitResultfwd, _groundCheckDistance, _groundAndObstacleLayer);
+            if (hitsfwd >= 1)
+            {
+                Debug.Log(hitResultfwd[0]);
+                Vector3 ObstacleBitangent = Vector3.Cross(transform.right, hitResultfwd[0].normal);
+                //maybe add a mixing factor for these 2
+                LookDirection = new Vector3(direction.x, 0f, direction.z).normalized + ObstacleBitangent;
+                MoveInput = (ObstacleBitangent + MoveInput).normalized;
+            }
+            else
+            {
+                MoveInput = (direction + updir * _mixUpwardMovement).normalized;
+                LookDirection = new Vector3(direction.x, 0f, direction.z).normalized;
+            }
             HasMoveInput = true;
         }
         else
@@ -128,15 +145,13 @@ public class SpiderMovement : MonoBehaviour
         }
         //check grounding but using transform downward vector
         IsGrounded = (hitsbl >= 1 || hitsbr >= 1 || hitsfl >= 1 || hitsfr >= 1);
-        Debug.Log(hitResultfl[0].collider.name);
-        Debug.Log(hitsfl);
+
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1f, 0f, 0f, 1f);
-        Gizmos.DrawLine(transform.position, transform.position + BodyForward * 0.5f);
-        Gizmos.DrawLine(transform.position, transform.position + BodyRight * 0.5f);
+        Gizmos.DrawLine(transform.position, transform.position + MoveInput * 0.5f);
     }
 
 }
