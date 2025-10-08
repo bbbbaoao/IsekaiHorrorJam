@@ -19,6 +19,7 @@ public class SpiderMovement : MonoBehaviour
     [SerializeField] private float _groundCheckDistance = 0.1f;
     [SerializeField] private float _chaseDistance = 10f;
     [SerializeField] private Transform _player;
+    [SerializeField][Range(0,1)] private float _mixUpwardMovement = 0.1f;
     private RaycastHit[] hitResultfl = new RaycastHit[3];
     private RaycastHit[] hitResultfr = new RaycastHit[3];
     private RaycastHit[] hitResultbl = new RaycastHit[3];
@@ -59,7 +60,7 @@ public class SpiderMovement : MonoBehaviour
 
         //if (IsGrounded)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(BodyForward, Vector3.Cross(BodyForward, BodyRight));
+            Quaternion targetRotation = Quaternion.LookRotation(LookDirection, Vector3.Cross(BodyForward, BodyRight));
             Quaternion delta = targetRotation * Quaternion.Inverse(_rigidbody.rotation);
             Quaternion newRotation = Quaternion.Slerp(_rigidbody.rotation, targetRotation, _turnSpeed * Time.fixedDeltaTime);
             _rigidbody.MoveRotation(newRotation);
@@ -73,6 +74,7 @@ public class SpiderMovement : MonoBehaviour
             {
                 _rigidbody.angularVelocity = Vector3.zero;
             }
+            /*
             if (MoveInput.magnitude < 0.1f) return;
             LookDirection = input - Vector3.Dot(input, transform.up) * transform.up;
             Vector3 forwardLocal = transform.forward;
@@ -81,6 +83,7 @@ public class SpiderMovement : MonoBehaviour
             float angularVelocity = turnMagnitude * _turnSpeed * turnDirection;
             _rigidbody.angularVelocity += new Vector3(0f, angularVelocity, 0f);
             //newRotation *= Quaternion.LookRotation(new Vector3(0f, angularVelocity, 0f));
+            */
         }
 
     }
@@ -90,7 +93,13 @@ public class SpiderMovement : MonoBehaviour
         Debug.Log(Vector3.Distance(_player.position, transform.position));
         if (Vector3.Distance(_player.position, transform.position) < _chaseDistance)
         {
-            MoveInput = (_player.position - transform.position).normalized;
+            //MoveInput = (_player.position - transform.position).normalized;
+            Vector3 direction = _player.position - transform.position;
+            //subtraction non-horizontal component from the movement
+            Vector3 updir = Vector3.Dot(direction, transform.up) * transform.up;
+            direction -= updir;
+            MoveInput = (direction + updir * _mixUpwardMovement).normalized;
+            LookDirection = new Vector3(direction.x, 0f, direction.z).normalized;
             HasMoveInput = true;
         }
         else
